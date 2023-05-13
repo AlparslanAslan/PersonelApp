@@ -1,0 +1,55 @@
+﻿@page "/Personnellist"
+
+<PageTitle>Personnel List</PageTitle>
+
+@using PersonelApp.Service
+@using PersonelApp.Data
+@inject PersonnelService Personnel
+
+<h1>Personnel List</h1>
+
+<p>This component demonstrates fetching data from a service.</p>
+
+@if (personnels == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>Title</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var personnel in personnels)
+            {
+                <tr>
+                    <td>@personnel.FirstName</td>
+                    <td>@personnel.LastName</td>
+                    <td>@personnel.Department</td>
+                    <td>@personnel.Title</td>
+                    <td><button @onclick="UpdatePersonnel">Update</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Personnel[]? personnels;
+
+    protected override async Task OnInitializedAsync()
+    {
+        personnels = await Personnel.GetPersonnelsAsync();
+    }
+    public void UpdatePersonnel()
+    {
+
+    }
+}

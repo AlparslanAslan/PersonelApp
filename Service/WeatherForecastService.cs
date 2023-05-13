@@ -1,4 +1,5 @@
-namespace PersonelApp.Data;
+using PersonelApp.Data;
+namespace PersonelApp.Service;
 
 public class WeatherForecastService
 {
